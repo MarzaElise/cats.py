@@ -1,2 +1,3 @@
-# cat-api
-A better API wrapper for thecatapi.com supporting both sync and async applications
+# cats.py
+
+An API wrapper for [thecatapi](https://thecatapi.com) supporting both sync and async applications
