@@ -1,4 +1,3 @@
-from cats.mixins.votes import VotesMixin
 from .mixins import *
 import requests
 
