@@ -57,3 +57,13 @@ class Category:
 
     id: int
     name: str
+
+@dataclass
+class Vote:
+
+    id: str
+    image_id: str
+    sub_id: opt_str
+    created_at: str
+    value: int
+    country_code: opt_str

@@ -1,9 +1,11 @@
+from cats.mixins.votes import Votes
 from .mixins import *
 import requests
 
 class Client(
     BreedsMixin, 
-    CategoriesMixin
+    CategoriesMixin,
+    Votes
 ):
 
     BASE = "https://api.thecatapi.com/v1"
