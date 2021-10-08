@@ -1,5 +1,5 @@
-from ..utils import BaseMixin, Category
-
+from ..utils import Category
+from .base import BaseMixin
 
 class CategoriesMixin(BaseMixin):
 
