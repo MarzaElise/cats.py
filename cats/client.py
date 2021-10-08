@@ -1,7 +1,11 @@
 from .breeds import BreedsMixin
+from .categories import CategoriesMixin
 import requests
 
-class Client(BreedsMixin):
+class Client(
+    BreedsMixin, 
+    CategoriesMixin
+):
 
     BASE = "https://api.thecatapi.com/v1"
 

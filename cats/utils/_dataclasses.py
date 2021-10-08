@@ -51,3 +51,9 @@ class Breed:
     vocalisation: opt_int = None
     bidability: opt_int = None
 
+
+@dataclass
+class Category:
+
+    id: int
+    name: str
