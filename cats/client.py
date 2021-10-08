@@ -1,5 +1,4 @@
-from .breeds import BreedsMixin
-from .categories import CategoriesMixin
+from .mixins import *
 import requests
 
 class Client(
