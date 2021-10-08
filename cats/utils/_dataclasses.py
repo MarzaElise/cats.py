@@ -66,10 +66,13 @@ class Vote:
     sub_id: opt_str
     created_at: str
     value: int
-    country_code: opt_str
+    country_code: opt_str = None
+    user_id: opt_str = None
 
 @dataclass
 class VoteResponse:
 
-    id: Union[str, int]
-    message: str
+    id: Union[str, int, None] = None
+    message: str = None
+    level: opt_str = None
+    status: opt_int = None

@@ -3,7 +3,7 @@ from ..utils import Vote, VoteResponse
 
 class VotesMixin(BaseMixin):
 
-    def get_votes(self, sub_id: str = None, *, limit: int = None, page: int = None):
+    def get_all_votes(self, sub_id: str = None, *, limit: int = None, page: int = None):
         query = {}
         if sub_id is not None:
             query["sub_id"] = sub_id
@@ -25,4 +25,12 @@ class VotesMixin(BaseMixin):
         url = f"{self.BASE}/votes"
         res = self.session.post(url, json=body)
         json = res.json()
+        return VoteResponse(**json)
+
+    def get_vote(self, vote_id: str):
+        url = f"{self.BASE}/votes/{vote_id}"
+        res = self.session.get(url)
+        json = res.json()
+        if res.status_code == 200:
+            return Vote(**json)
         return VoteResponse(**json)
