@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, TypeAlias
+from typing import Optional, TypeAlias, Union
 
 opt_str: TypeAlias = Optional[str]
 opt_int: TypeAlias = Optional[int]
@@ -67,3 +67,9 @@ class Vote:
     created_at: str
     value: int
     country_code: opt_str
+
+@dataclass
+class VoteResponse:
+
+    id: Union[str, int]
+    message: str

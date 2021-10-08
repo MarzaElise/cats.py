@@ -1,5 +1,5 @@
 from .base import BaseMixin
-from ..utils import Vote
+from ..utils import Vote, VoteResponse
 
 class VotesMixin(BaseMixin):
 
@@ -15,3 +15,14 @@ class VotesMixin(BaseMixin):
         res = self.session.get(url, params=query)
         json = res.json()
         return [Vote(**data) for data in json]
+
+    def vote_image(self, *, image_id: str, sub_id: str, value: int):
+        body = { # request body
+            "image_id": image_id,
+            "sub_id": sub_id,
+            "value": value
+        }
+        url = f"{self.BASE}/votes"
+        res = self.session.post(url, json=body)
+        json = res.json()
+        return VoteResponse(**json)

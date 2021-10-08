@@ -1,7 +1,8 @@
-from ._dataclasses import Breed, Category, Vote
+from ._dataclasses import Breed, Category, Vote, VoteResponse
 
 __all__ = (
     "Breed",
     "Category",
-    "Vote"
+    "Vote",
+    "VoteResponse"
 )
