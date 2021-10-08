@@ -1,4 +1,3 @@
-import requests
 from ..utils import Breed
 from .base import BaseMixin
 from urllib.parse import quote

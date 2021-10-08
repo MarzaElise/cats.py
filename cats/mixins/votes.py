@@ -1,7 +1,7 @@
 from .base import BaseMixin
 from ..utils import Vote
 
-class Votes(BaseMixin):
+class VotesMixin(BaseMixin):
 
     def get_votes(self, sub_id: str = None, *, limit: int = None, page: int = None):
         query = {}
