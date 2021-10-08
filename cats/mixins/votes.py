@@ -34,3 +34,9 @@ class VotesMixin(BaseMixin):
         if res.status_code == 200:
             return Vote(**json)
         return VoteResponse(**json)
+
+    def delete_vote(self, vote_id: str):
+        url = f"{self.BASE}/votes/{vote_id}"
+        res = self.session.delete(url)
+        json = res.json()
+        return VoteResponse(**json)
