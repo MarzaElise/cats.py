@@ -5,8 +5,16 @@ from ._dataclasses import (
     Vote,
     Response,
     Favourite,
-    FavouriteImage
+    FavouriteImage,
+    Image
 )
+
+def _resolve_query(**kwargs):
+    query = {}
+    for k, v in kwargs.items():
+        if k is not None:
+            query[k] = v
+    return query
 
 __all__ = (
     "Breed",
@@ -14,5 +22,6 @@ __all__ = (
     "Vote",
     "Response",
     "Favourite",
-    "FavouriteImage"
+    "FavouriteImage",
+    "Image"
 )
