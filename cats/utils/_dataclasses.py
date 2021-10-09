@@ -122,9 +122,9 @@ class Image:
 @dataclass
 class Analysis:
 
-    image_id: str
-    labels: list[dict]
-    moderation_labels: list[dict]
-    vendor: str
-    approved: int
-    rejected: int
+    image_id: str = None
+    labels: list[dict] = None
+    moderation_labels: list[dict] = None
+    vendor: str = None
+    approved: int = None
+    rejected: int = None
