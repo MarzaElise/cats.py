@@ -55,8 +55,8 @@ class Breed:
 @dataclass
 class Category:
 
-    id: int
-    name: str
+    id: int = None
+    name: str = None
 
 @dataclass
 class Vote:
@@ -95,3 +95,36 @@ class Favourite:
 
     def __post_init__(self):
         self.image = FavouriteImage(**self.image)
+
+
+@dataclass
+class Image:
+
+    id: str = None
+    url: str = None
+    width: int = None
+    height: int = None
+    created_at: str = None
+    sub_id: str = None
+    original_filename: str = None
+
+    breeds: Breed = None
+    categories: Category = None
+
+    def __post_init__(self):
+        if self.categories is None:
+            self.categories = []
+        if self.breeds is None:
+            self.breeds = []
+        self.breeds = [Breed(**data) for data in self.breeds] # api returns a list
+        self.categories = [Category(**data) for data in self.categories] # api returns list
+
+@dataclass
+class Analysis:
+
+    image_id: str
+    labels: list[dict]
+    moderation_labels: list[dict]
+    vendor: str
+    approved: int
+    rejected: int
