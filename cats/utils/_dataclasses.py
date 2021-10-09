@@ -70,9 +70,28 @@ class Vote:
     user_id: opt_str = None
 
 @dataclass
-class VoteResponse:
+class Response:
 
     id: Union[str, int, None] = None
     message: str = None
     level: opt_str = None
     status: opt_int = None
+
+@dataclass
+class FavouriteImage:
+
+    id: str
+    url: str
+
+@dataclass
+class Favourite:
+
+    id: str
+    image_id: str
+    sub_id: str
+    created_at: str
+    image: FavouriteImage
+    user_id: str
+
+    def __post_init__(self):
+        self.image = FavouriteImage(**self.image)

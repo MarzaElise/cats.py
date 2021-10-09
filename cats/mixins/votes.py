@@ -1,5 +1,5 @@
 from .base import BaseMixin
-from ..utils import Vote, VoteResponse
+from ..utils import Vote, Response
 
 class VotesMixin(BaseMixin):
 
@@ -25,7 +25,7 @@ class VotesMixin(BaseMixin):
         url = f"{self.BASE}/votes"
         res = self.session.post(url, json=body)
         json = res.json()
-        return VoteResponse(**json)
+        return Response(**json)
 
     def get_vote(self, vote_id: str):
         url = f"{self.BASE}/votes/{vote_id}"
@@ -33,10 +33,10 @@ class VotesMixin(BaseMixin):
         json = res.json()
         if res.status_code == 200:
             return Vote(**json)
-        return VoteResponse(**json)
+        return Response(**json)
 
     def delete_vote(self, vote_id: str):
         url = f"{self.BASE}/votes/{vote_id}"
         res = self.session.delete(url)
         json = res.json()
-        return VoteResponse(**json)
+        return Response(**json)
