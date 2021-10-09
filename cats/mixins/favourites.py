@@ -33,3 +33,9 @@ class FavouritesMixin(BaseMixin):
         res = self.session.get(url)
         json = res.json()
         return Favourite(**json)
+
+    def delete_favourite(self, favourite_id: str):
+        url = f"{self.BASE}/favourites/{favourite_id}"
+        res = self.session.delete(url)
+        json = res.json()
+        return Response(**json)
