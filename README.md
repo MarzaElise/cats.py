@@ -73,4 +73,4 @@ If you are confused on what would be a good contribution, take a look at the ope
 
 ## License
 
-Apache Version 2.0
+GNU AGPLv3
