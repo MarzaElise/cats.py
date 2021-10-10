@@ -79,3 +79,10 @@ class ImagesMixin(BaseMixin):
         res = self.session.get(url)
         json = res.json()
         return [Analysis(**data) for data in json]
+
+    def search_image(self, *, breed_ids: str = None, category_ids: list[int] = None):
+        url = f"{self.BASE}/images/search"
+        query = _resolve_query(breed_ids=breed_ids, category_ids=category_ids)
+        res = self.session.get(url, params=query)
+        json = res.json()
+        return [Image(**data) for data in json]
