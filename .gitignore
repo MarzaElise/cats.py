@@ -4,3 +4,6 @@
 delete.*
 tests/
 **/test.*
+*.egg-info
+dist/
+build/
