@@ -14,7 +14,13 @@ A synchronous, object oritented API wrapper for [thecatapi](https://thecatapi.co
 
 ## Installation
 
-Currently not ready for installation
+Clone this repository and install it. You need [git](https://git-scm.com) installed for this
+
+```shell
+git clone https://github.com/MarzaElise/cats.py.git
+cd cats.py
+pip install .
+```
 
 ## Usage
 
