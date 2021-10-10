@@ -7,7 +7,7 @@ desc = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="cats.py",
-    version="0.1.2",
+    version="0.1.3",
     description="A synchronous, object oriented API wrapper for thecatapi",
     long_description=desc,
     long_description_content_type="text/markdown",
