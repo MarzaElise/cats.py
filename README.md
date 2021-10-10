@@ -14,13 +14,20 @@ A synchronous, object oritented API wrapper for [thecatapi](https://thecatapi.co
 
 ## Installation
 
-Clone this repository and install it. You need [git](https://git-scm.com) installed for this
+- Install it from [pypi](https://pypi.org/project/cats.py)
 
-```shell
-git clone https://github.com/MarzaElise/cats.py.git
-cd cats.py
-pip install .
-```
+   ```shell
+   pip install cats.py
+   ```
+
+- To install the development version,
+clone this repository and install it. You need [git](https://git-scm.com) installed for this
+
+   ```shell
+   git clone https://github.com/MarzaElise/cats.py.git
+   cd cats.py
+   pip install .
+   ```
 
 ## Usage
 
