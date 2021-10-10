@@ -1,6 +1,6 @@
 # cats.py
 
-A synchronous, object oritented API wrapper for [thecatapi](https://thecatapi.com)
+A synchronous, object oriented API wrapper for [thecatapi](https://thecatapi.com)
 
 ## Table Of Content
 
