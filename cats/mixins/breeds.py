@@ -2,9 +2,11 @@ from ..utils import Breed
 from .base import BaseMixin
 from urllib.parse import quote
 
-class BreedsMixin(BaseMixin):
 
-    def get_breeds(self, *, attach_breed: int = 0, page: int = None, limit: int = None):
+class BreedsMixin(BaseMixin):
+    def get_breeds(
+        self, *, attach_breed: int = 0, page: int = None, limit: int = None
+    ):
         p = {
             "attach_breed": attach_breed,
         }

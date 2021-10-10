@@ -3,8 +3,9 @@ from ..utils import Favourite, Response
 
 
 class FavouritesMixin(BaseMixin):
-
-    def get_all_favourites(self, *, sub_id: str = None, limit: str = None, page: str = None):
+    def get_all_favourites(
+        self, *, sub_id: str = None, limit: str = None, page: str = None
+    ):
         url = f"{self.BASE}/favourites"
         query = {}
         if sub_id is not None:
@@ -18,9 +19,7 @@ class FavouritesMixin(BaseMixin):
         return [Favourite(**data) for data in json]
 
     def save_favourite(self, image_id: str, sub_id: str = None):
-        body = {
-            "image_id": image_id
-        }
+        body = {"image_id": image_id}
         if sub_id is not None:
             body["sub_id"] = sub_id
         url = f"{self.BASE}/favourites"

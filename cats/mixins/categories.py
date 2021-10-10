@@ -1,8 +1,8 @@
 from ..utils import Category
 from .base import BaseMixin
 
-class CategoriesMixin(BaseMixin):
 
+class CategoriesMixin(BaseMixin):
     def get_categories(self, *, limit: int = None, page: int = None):
         query = {}
         if limit is not None:

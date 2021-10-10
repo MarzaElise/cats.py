@@ -4,6 +4,7 @@ from typing import Optional, TypeAlias, Union
 opt_str: TypeAlias = Optional[str]
 opt_int: TypeAlias = Optional[int]
 
+
 @dataclass()
 class Breed:
 
@@ -58,6 +59,7 @@ class Category:
     id: int = None
     name: str = None
 
+
 @dataclass
 class Vote:
 
@@ -69,6 +71,7 @@ class Vote:
     country_code: opt_str = None
     user_id: opt_str = None
 
+
 @dataclass
 class Response:
 
@@ -77,11 +80,13 @@ class Response:
     level: opt_str = None
     status: opt_int = None
 
+
 @dataclass
 class FavouriteImage:
 
     id: str
     url: str
+
 
 @dataclass
 class Favourite:
@@ -116,8 +121,13 @@ class Image:
             self.categories = []
         if self.breeds is None:
             self.breeds = []
-        self.breeds = [Breed(**data) for data in self.breeds] # api returns a list
-        self.categories = [Category(**data) for data in self.categories] # api returns list
+        self.breeds = [
+            Breed(**data) for data in self.breeds
+        ]  # api returns a list
+        self.categories = [
+            Category(**data) for data in self.categories
+        ]  # api returns list
+
 
 @dataclass
 class Analysis:

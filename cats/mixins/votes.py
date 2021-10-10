@@ -1,9 +1,11 @@
 from .base import BaseMixin
 from ..utils import Vote, Response
 
-class VotesMixin(BaseMixin):
 
-    def get_all_votes(self, sub_id: str = None, *, limit: int = None, page: int = None):
+class VotesMixin(BaseMixin):
+    def get_all_votes(
+        self, sub_id: str = None, *, limit: int = None, page: int = None
+    ):
         query = {}
         if sub_id is not None:
             query["sub_id"] = sub_id
@@ -17,10 +19,10 @@ class VotesMixin(BaseMixin):
         return [Vote(**data) for data in json]
 
     def vote_image(self, *, image_id: str, sub_id: str, value: int):
-        body = { # request body
+        body = {  # request body
             "image_id": image_id,
             "sub_id": sub_id,
-            "value": value
+            "value": value,
         }
         url = f"{self.BASE}/votes"
         res = self.session.post(url, json=body)

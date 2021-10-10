@@ -5,7 +5,6 @@ import io
 
 
 class ImagesMixin(BaseMixin):
-
     def get_all_images(
         self,
         *,
@@ -16,7 +15,7 @@ class ImagesMixin(BaseMixin):
         page: int = None,
         category_ids: list[int] = None,
         format: str = None,
-        breed_id: str = None
+        breed_id: str = None,
     ):
         # query = {}
         query = _resolve_query(
@@ -27,16 +26,16 @@ class ImagesMixin(BaseMixin):
             page=page,
             category_ids=category_ids,
             format=format,
-            breed_id=breed_id
+            breed_id=breed_id,
         )
         url = f"{self.BASE}/images/search"
         res = self.session.get(url, params=query)
         json = res.json()
         return [Image(**data) for data in json]
 
-    def get_own_image(self, **kwargs): # needs a better name
-        # Note: 
-        # see https://docs.thecatapi.com/api-reference/images/images-get-uploads 
+    def get_own_image(self, **kwargs):  # needs a better name
+        # Note:
+        # see https://docs.thecatapi.com/api-reference/images/images-get-uploads
         # for valid kwargs
         url = f"{self.BASE}/images"
         query = _resolve_query(
@@ -55,8 +54,9 @@ class ImagesMixin(BaseMixin):
         json = res.json()
         return [Image(**data) for data in json]
 
-    def upload_image(self, file_name: str): 
+    def upload_image(self, file_name: str):
         raise NotImplementedError("This function will be implemented soon")
+
     #     url = f"{self.BASE}/images/upload"
     #     with open(file_name, "rb") as file:
     #         res = self.session.post(url, files={"file": file})
@@ -80,7 +80,9 @@ class ImagesMixin(BaseMixin):
         json = res.json()
         return [Analysis(**data) for data in json]
 
-    def search_image(self, *, breed_ids: str = None, category_ids: list[int] = None):
+    def search_image(
+        self, *, breed_ids: str = None, category_ids: list[int] = None
+    ):
         url = f"{self.BASE}/images/search"
         query = _resolve_query(breed_ids=breed_ids, category_ids=category_ids)
         res = self.session.get(url, params=query)

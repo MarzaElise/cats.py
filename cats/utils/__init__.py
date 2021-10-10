@@ -1,4 +1,3 @@
-
 from ._dataclasses import (
     Breed,
     Category,
@@ -7,9 +6,10 @@ from ._dataclasses import (
     Favourite,
     FavouriteImage,
     Image,
-    Analysis
+    Analysis,
 )
 from .exceptions import *
+
 
 def _resolve_query(**kwargs):
     query = {}
@@ -18,16 +18,22 @@ def _resolve_query(**kwargs):
             query[k] = v
     return query
 
+
 def _raise_for_status(status_code: int):
     if status_code == 404:
-        raise NotFound(f"Requested URL was not found. Status code - {status_code}")
+        raise NotFound(
+            f"Requested URL was not found. Status code - {status_code}"
+        )
     if status_code == 403:
         raise Forbidden(f"Invalid API key. Status code - {status_code}")
     if status_code >= 500:
-        raise ServerError(f"Unknown server side error. Status code - {status_code}")
+        raise ServerError(
+            f"Unknown server side error. Status code - {status_code}"
+        )
     if str(status_code).startswith("2"):
         return True
     raise HTTPException(f"Unhandled status code exception - {status_code}")
+
 
 __all__ = (
     "Breed",
@@ -41,5 +47,5 @@ __all__ = (
     "NotFound",
     "Forbidden",
     "ServerError",
-    "HTTPException"
+    "HTTPException",
 )

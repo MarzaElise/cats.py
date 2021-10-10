@@ -2,9 +2,7 @@ from requests import Session, Response
 from .utils import _raise_for_status
 
 
-
 class HTTPClient(Session):
-
     def __init__(self, api_key) -> None:
         super().__init__()
         self.headers["x-api-key"] = api_key

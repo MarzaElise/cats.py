@@ -2,12 +2,9 @@ from .mixins import *
 import requests
 from .http import HTTPClient
 
+
 class Client(
-    BreedsMixin, 
-    CategoriesMixin,
-    VotesMixin,
-    FavouritesMixin,
-    ImagesMixin
+    BreedsMixin, CategoriesMixin, VotesMixin, FavouritesMixin, ImagesMixin
 ):
 
     BASE = "https://api.thecatapi.com/v1"
