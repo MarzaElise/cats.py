@@ -1,14 +1,10 @@
-from ..utils import Category
+from ..utils import Category, _resolve_query
 from .base import BaseMixin
 
 
 class CategoriesMixin(BaseMixin):
     def get_categories(self, *, limit: int = None, page: int = None):
-        query = {}
-        if limit is not None:
-            query["limit"] = limit
-        if page is not None:
-            query["page"] = page
+        query = _resolve_query(limit=limit, page=page)
         url = f"{self.BASE}/categories"
         res = self.session.get(url, params=query)
         json = res.json()

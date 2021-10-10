@@ -12,4 +12,3 @@ class Client(
     def __init__(self, api_key: str):
         self.session = HTTPClient(api_key)
         self.api_key = api_key
-        self.session.headers["x-api-key"] = self.api_key
