@@ -1,5 +1,6 @@
 from .mixins import *
 import requests
+from .http import HTTPClient
 
 class Client(
     BreedsMixin, 
@@ -11,7 +12,7 @@ class Client(
 
     BASE = "https://api.thecatapi.com/v1"
 
-    def __init__(self, api_key: str, *, session: requests.Session = None):
-        self.session = session or requests.Session()
+    def __init__(self, api_key: str):
+        self.session = HTTPClient(api_key)
         self.api_key = api_key
         self.session.headers["x-api-key"] = self.api_key
