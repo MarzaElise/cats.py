@@ -1,5 +1,5 @@
 from .base import BaseMixin
-from ..utils import _resolve_query, Image, Response
+from ..utils import _resolve_query, Image, Response, Analysis
 import base64
 import io
 
@@ -74,5 +74,8 @@ class ImagesMixin(BaseMixin):
         json = res.json()
         return Response(**json)
 
-    def get_analysis(self, image_id: str):
+    def get_image_analysis(self, image_id: str):
         url = f"{self.BASE}/images/{image_id}/analysis"
+        res = self.session.get(url)
+        json = res.json()
+        return [Analysis(**data) for data in json]

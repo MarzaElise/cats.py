@@ -6,7 +6,8 @@ from ._dataclasses import (
     Response,
     Favourite,
     FavouriteImage,
-    Image
+    Image,
+    Analysis
 )
 from .exceptions import *
 
@@ -36,6 +37,7 @@ __all__ = (
     "Favourite",
     "FavouriteImage",
     "Image",
+    "Analysis",
     "NotFound",
     "Forbidden",
     "ServerError",
