@@ -24,9 +24,7 @@ A synchronous, object oriented API wrapper for [thecatapi](https://thecatapi.com
 clone this repository and install it. You need [git](https://git-scm.com) installed for this
 
    ```shell
-   git clone https://github.com/MarzaElise/cats.py.git
-   cd cats.py
-   pip install .
+   pip install git+https://github.com/MarzaElise/cats.py.git
    ```
 
 ## Usage
@@ -83,6 +81,18 @@ If you are confused on what would be a good contribution, take a look at the ope
 
    - I currently have no plans to do it in the near future. If you really want an asynchronous wrapper,
    take a look at [catapi.py](https://github.com/ephreal/catapi.py)
+
+6. Is this wrapper consistent?
+
+   - I tried my best to keep this wrapper consistent with the API itself. By returning lists when API
+     returns an array etc.
+
+7. Where is the documentation?
+
+   - Currently, there is no documentation for this wrapper. Alternatively, you can take a look at the
+     [API documentation](https://docs.thecatapi.com) and the source to figure out some stuff.
+
+Note: all changes were tested on python 3.10.0 64-bit before being published
 
 ## License
 
