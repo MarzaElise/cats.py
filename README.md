@@ -77,7 +77,7 @@ If you are confused on what would be a good contribution, take a look at the ope
    - If you are not on discord, open a new [issue](https://github.com/MarzaElise/cats.py/issues)
    - If you also have a fix for it, create a new pull request and I'll merge it if its good. (See [Contributing](#contributing))
 
-5. Will there be an aync version of this?
+5. Will there be an async version of this?
 
    - I currently have no plans to do it in the near future. If you really want an asynchronous wrapper,
    take a look at [catapi.py](https://github.com/ephreal/catapi.py)
