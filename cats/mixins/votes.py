@@ -13,6 +13,7 @@ class VotesMixin(BaseMixin):
         return [Vote(**data) for data in json]
 
     def vote_image(self, *, image_id: str, sub_id: str, value: int):
+        assert isinstance(value, int) and value in [0, 1], "Value must be either 0 or 1"
         body = {  # request body
             "image_id": image_id,
             "sub_id": sub_id,
