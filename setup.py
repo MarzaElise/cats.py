@@ -12,7 +12,7 @@ setup(
     long_description=desc,
     long_description_content_type="text/markdown",
     url="https://github.com/MarzaElise/cats.py",
-    author="M-a-r-c-u-s",
+    author="Marcus",
     license="GNU AGPLv3",
     classifiers=[
         "Intended Audience :: Developers",
