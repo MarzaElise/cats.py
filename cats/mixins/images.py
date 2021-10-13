@@ -17,6 +17,21 @@ class ImagesMixin(BaseMixin):
         format: str = None,
         breed_id: str = None,
     ):
+        """Get all of the public images
+
+        Arguments:
+            ``size`` (str, optional): Size of each image, must be on of `small`, `thumb`, `med`, `full`. Defaults to None.
+            ``mime_types`` (list[str], optional): See the API [documentation](https://docs.thecatapi.com). Defaults to None.
+            ``order`` (str, optional): The order the images should be sorted in, must be one of `RANDOM` `ASC` `DESC`. Defaults to None.
+            ``limit`` (int, optional): Limits the amount of results. Defaults to None.
+            ``page`` (int, optional): For pagination. Defaults to None.
+            ``category_ids`` (list[int], optional): Filters images and returns only the images that belong to the relevant categories. Defaults to None.
+            ``format`` (str, optional): must be one of `json` `src`. Defaults to None.
+            ``breed_id`` (str, optional): Filters images for this breed. Defaults to None.
+
+        Returns:
+            ``List[cats.Image]`` : Images returned by the API with the given filters
+        """
         assert size.lower() in {"small", "thumb", "med", "full"}, "size must be one of small, thumb, med, full"
         assert order.upper() in {"RANDOM", "ASC", "DESC"}, "order should be one of RANDOM, ASC, DESC"
         assert limit >= 1 and limit < 100, "limit cannot be below 1 or above 100"
@@ -39,6 +54,15 @@ class ImagesMixin(BaseMixin):
         return [Image(**data) for data in json]
 
     def get_own_image(self, **kwargs):  # needs a better name
+        """Get an image uploaded by you
+
+        Arguments:
+            ``kwargs`` (dict, optional): for filtering the response and the request. See the API [documentation](https://docs.thecatapi.com) for more details
+
+        Returns:
+            ``List[cats.Image]`` : All the images filtered by the kwargs
+        """
+
         # Note:
         # see https://docs.thecatapi.com/api-reference/images/images-get-uploads
         # for valid kwargs
@@ -83,6 +107,14 @@ class ImagesMixin(BaseMixin):
         return [Image(**data) for data in json]
 
     def upload_image(self, file_name: str):
+        """Not implemented yet.
+
+        Arguments:
+            ``file_name`` (str): File name to use while uploading
+
+        Raises:
+            ``NotImplementedError`` : method not implemented
+        """
         raise NotImplementedError("This function will be implemented soon")
 
     #     url = f"{self.BASE}/images/upload"
@@ -91,18 +123,46 @@ class ImagesMixin(BaseMixin):
     #     return res.text
 
     def get_image(self, image_id: str):
+        """
+        Get the image matching the image_id provided
+        
+        Note: Some attributes will be ``None`` if you dont own the image
+
+        Arguments:
+            ``image_id`` (str): The image id to re
+
+        Returns:
+            ``cats.Image`` : The image you requested
+        """
         url = f"{self.BASE}/images/{image_id}"
         res = self.session.get(url)
         json = res.json()
         return Image(**json)
 
     def delete_image(self, image_id: str):
+        """Deletr an image posted by you
+
+        Arguments:
+            ``image_id`` (str): The ID of the image to delete
+
+        Returns:
+            ``cats.Response``: Response returned by the API. May contain unsuccesful values
+        """
         url = f"{self.BASE}/images/{image_id}"
         res = self.session.delete(url)
         json = res.json()
         return Response(**json)
 
     def get_image_analysis(self, image_id: str):
+        """
+        Get the Analysis performed on the Image during upload.
+
+        Arguments:
+            ``image_id`` (str): The image's id to get the Analysis of
+
+        Returns:
+            ``cats.Analysis``: The analysis of the image you requested
+        """
         url = f"{self.BASE}/images/{image_id}/analysis"
         res = self.session.get(url)
         json = res.json()
@@ -111,6 +171,15 @@ class ImagesMixin(BaseMixin):
     def search_image(
         self, *, breed_ids: str = None, category_ids: list[int] = None
     ):
+        """Search for an image
+
+        Arguments:
+            ``breed_ids`` (str, optional): Filter the images and receive only this specific breed. Defaults to None.
+            ``category_ids`` (list[int], optional): Returns only images that belong to this category. Defaults to None.
+
+        Returns:
+            ``List[cats.Image]``: List of images that match your filters
+        """
         url = f"{self.BASE}/images/search"
         query = _resolve_query(breed_ids=breed_ids, category_ids=category_ids)
         res = self.session.get(url, params=query)
