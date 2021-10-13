@@ -8,6 +8,6 @@ all_breeds = client.get_breeds()
 print(all_breeds[0].wikipedia_url)
 # prints the wikipedia URL of the first breed in the list
 
-beng = client.search_breed("beng") # short for bengal
+beng = client.search_breed("beng")  # short for bengal
 # beng is an instance of cat.Breed
 print(beng.wikipedia_url)

@@ -33,7 +33,10 @@ class VotesMixin(BaseMixin):
         Returns:
             ``cats.Response``: Response returned by the API. may contain unsuccesful value
         """
-        assert isinstance(value, int) and value in [0, 1], "Value must be either 0 or 1"
+        assert isinstance(value, int) and value in [
+            0,
+            1,
+        ], "Value must be either 0 or 1"
         body = {  # request body
             "image_id": image_id,
             "sub_id": sub_id,
