@@ -27,7 +27,7 @@ class BreedsMixin(BaseMixin):
         """Search for a specific breed
 
         Arguments:
-            breed (str): The breed to search for
+            ``breed`` (str): The breed to search for
 
         Returns:
             ``cats.Breed``: The breed object related to the breed you searched for
