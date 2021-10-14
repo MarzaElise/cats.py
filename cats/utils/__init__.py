@@ -49,5 +49,5 @@ __all__ = (
     "Forbidden",
     "ServerError",
     "HTTPException",
-    "ValidateArguments"
+    "ValidateArguments",
 )

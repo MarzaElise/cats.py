@@ -21,7 +21,11 @@ class ValidateArguments(BaseModel):
             return mime_types
         for type_ in mime_types:
             if type_.lower() not in {"jpg", "png", "gif"}:
-                raise ValueError("Expected jpg, png or gif. Received {} instead".format(type_.lower()))
+                raise ValueError(
+                    "Expected jpg, png or gif. Received {} instead".format(
+                        type_.lower()
+                    )
+                )
         return mime_types
 
     @validator("size")
@@ -34,20 +38,20 @@ class ValidateArguments(BaseModel):
 
     @validator("include_favourite")
     def validate_favourite(cls, item: int):
-        if item in {0, 1, None}: 
+        if item in {0, 1, None}:
             return item
         raise ValueError("include_favourite must be either 0, 1 or None")
 
     @validator("include_vote")
     def validate_vote(cls, item: int):
-        if item in {0, 1, None}: 
+        if item in {0, 1, None}:
             return item
         raise ValueError("include_vote must be either 0, 1 or None")
 
     @validator("limit")
     def validate_limit(cls, limit: int):
         if limit is None:
-            return limit # early return
+            return limit  # early return
         if limit > 100:
             raise ValueError("limit must be below 100")
         if limit < 1:

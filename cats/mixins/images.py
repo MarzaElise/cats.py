@@ -1,5 +1,11 @@
 from .base import BaseMixin
-from ..utils import _resolve_query, Image, Response, Analysis, ValidateArguments
+from ..utils import (
+    _resolve_query,
+    Image,
+    Response,
+    Analysis,
+    ValidateArguments,
+)
 from typing import List, Optional
 
 
@@ -38,7 +44,7 @@ class ImagesMixin(BaseMixin):
             limit=limit,
             mime_types=mime_types,
             page=page,
-            format=format
+            format=format,
         )
 
         query = _resolve_query(
@@ -68,7 +74,7 @@ class ImagesMixin(BaseMixin):
         original_filename: str = None,
         format: str = None,
         include_vote: int = None,
-        include_favourite: Optional[int] = None
+        include_favourite: Optional[int] = None,
     ):
         """Get all the images uploaded by you
 
@@ -89,17 +95,17 @@ class ImagesMixin(BaseMixin):
         """
 
         ValidateArguments(
-            limit = limit,
-            page = page,
-            order = order,
-            sub_id = sub_id,
-            breed_ids = breed_ids,
-            category_ids = category_ids,
-            original_filename = original_filename,
-            format = format,
-            include_vote = include_vote,
-            include_favourite = include_favourite
-        ) # i dont need the return value, just need to validate them
+            limit=limit,
+            page=page,
+            order=order,
+            sub_id=sub_id,
+            breed_ids=breed_ids,
+            category_ids=category_ids,
+            original_filename=original_filename,
+            format=format,
+            include_vote=include_vote,
+            include_favourite=include_favourite,
+        )  # i dont need the return value, just need to validate them
 
         category_ids = list(set(category_ids))
         breed_ids = list(set(breed_ids))
