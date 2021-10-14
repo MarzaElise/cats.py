@@ -23,7 +23,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    install_requires=["requests"],
+    install_requires=["requests", "pydantic"],
     packages=find_packages(
         include=["cats", "cats.*"], exclude=["__pycache__"]
     ),
