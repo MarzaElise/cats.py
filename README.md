@@ -10,6 +10,7 @@ A synchronous, object oriented API wrapper for [thecatapi](https://thecatapi.com
   - [Usage](#usage)
   - [Contributing](#contributing)
   - [FAQ](#faq)
+  - [What's new](#whats-new)
   - [License](#license)
 
 ## Installation
@@ -93,6 +94,13 @@ If you are confused on what would be a good contribution, take a look at the ope
      [API documentation](https://docs.thecatapi.com) and the source to figure out some stuff.
 
 Note: all changes were tested on python 3.10.0 64-bit before being published
+
+## What's new
+
+Changes made for the latest release
+
+- Added docstrings for all the methods
+- Better argument vaildation
 
 ## License
 
