@@ -9,6 +9,7 @@ from ._dataclasses import (
     Analysis,
 )
 from .exceptions import *
+from .validator import ValidateArguments
 
 
 def _resolve_query(**kwargs):
@@ -48,4 +49,5 @@ __all__ = (
     "Forbidden",
     "ServerError",
     "HTTPException",
+    "ValidateArguments"
 )

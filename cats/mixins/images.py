@@ -1,7 +1,6 @@
 from .base import BaseMixin
-from ..utils import _resolve_query, Image, Response, Analysis
-import base64
-import io
+from ..utils import _resolve_query, Image, Response, Analysis, ValidateArguments
+from typing import List, Optional
 
 
 class ImagesMixin(BaseMixin):
@@ -9,11 +8,11 @@ class ImagesMixin(BaseMixin):
         self,
         *,
         size: str = None,
-        mime_types: list[str] = None,
+        mime_types: List[str] = None,
         order: str = None,
         limit: int = None,
         page: int = None,
-        category_ids: list[int] = None,
+        category_ids: List[int] = None,
         format: str = None,
         breed_id: str = None,
     ):
@@ -32,25 +31,15 @@ class ImagesMixin(BaseMixin):
         Returns:
             ``List[cats.Image]`` : Images returned by the API with the given filters
         """
-        assert size.lower() in {
-            "small",
-            "thumb",
-            "med",
-            "full",
-        }, "size must be one of small, thumb, med, full"
-        assert order.upper() in {
-            "RANDOM",
-            "ASC",
-            "DESC",
-        }, "order should be one of RANDOM, ASC, DESC"
-        assert (
-            limit >= 1 and limit < 100
-        ), "limit cannot be below 1 or above 100"
-        assert page >= 0, "page must be higher than or equal 0"
-        assert format.lower() in {
-            "json",
-            "src",
-        }, "format must be one of json, src"
+
+        ValidateArguments(
+            size=size,
+            order=order,
+            limit=limit,
+            mime_types=mime_types,
+            page=page,
+            format=format
+        )
 
         query = _resolve_query(
             size=size.lower(),
@@ -67,57 +56,53 @@ class ImagesMixin(BaseMixin):
         json = res.json()
         return [Image(**data) for data in json]
 
-    def get_own_image(self, **kwargs):  # needs a better name
-        """Get an image uploaded by you
+    def get_own_image(  # needs a better name
+        self,
+        *,
+        limit: int = None,
+        page: int = None,
+        order: str = None,
+        sub_id: str = None,
+        breed_ids: List[str] = None,
+        category_ids: List[str] = None,
+        original_filename: str = None,
+        format: str = None,
+        include_vote: int = None,
+        include_favourite: Optional[int] = None
+    ):
+        """Get all the images uploaded by you
 
         Arguments:
-            ``kwargs`` (dict, optional): for filtering the response and the request. See the API [documentation](https://docs.thecatapi.com) for more details
+            ``limit`` (int, optional): Limits the amount of results to be returned. Defaults to None.
+            ``page`` (int, optional): For pagination. Defaults to None.
+            ``order`` (str, optional): To sort the results, must be one of RANDOM, ASC, DESC. Defaults to None.
+            ``sub_id`` (str, optional): For unique identification. Defaults to None.
+            ``breed_ids`` (List[str], optional): unique list of breed ids for filtering. Defaults to None.
+            ``category_ids`` (List[str], optional): unique list of category ids to filter the response. Defaults to None.
+            ``original_filename`` (str, optional): To search for a match. Defaults to None.
+            ``format`` (str, optional): format of the image. must be one of json or src. Defaults to None.
+            ``include_vote`` (int, optional): See API [docs](https://docs.thecatapi.com). Defaults to None.
+            ``include_favourite`` (Optional[int], optional): See API [docs](https://docs.thecatapi.com).. Defaults to None.
 
         Returns:
-            ``List[cats.Image]`` : All the images filtered by the kwargs
+            ``List[cats.Image]``: All the images that belong to you
         """
 
-        # Note:
-        # see https://docs.thecatapi.com/api-reference/images/images-get-uploads
-        # for valid kwargs
+        ValidateArguments(
+            limit = limit,
+            page = page,
+            order = order,
+            sub_id = sub_id,
+            breed_ids = breed_ids,
+            category_ids = category_ids,
+            original_filename = original_filename,
+            format = format,
+            include_vote = include_vote,
+            include_favourite = include_favourite
+        ) # i dont need the return value, just need to validate them
 
-        limit = kwargs.get("limit", None)
-        page = kwargs.get("page", None)
-        order = kwargs.get("order", None)
-        sub_id = kwargs.get("sub_id", None)
-        breed_ids = kwargs.get("breed_ids", None)
-        category_ids = kwargs.get("category_ids", None)
-        original_filename = kwargs.get("original_filename", None)
-        format = kwargs.get("format", None)
-        include_vote = kwargs.get("include_vote", None)
-        include_favourite = kwargs.get("include_favourite", None)
-
-        assert (
-            limit >= 1 and limit < 100
-        ), "limit cannot be below 1 or above 100"
-        assert page >= 1, "page must be higher than or equal 1"
-        assert order.upper() in {
-            "RANDOM",
-            "ASC",
-            "DESC",
-        }, "order should be one of RANDOM, ASC, DESC"
-        assert (
-            len(sub_id) >= 0 and len(sub_id) < 255
-        ), "length of sub_id must be higher than 0 and lower than 255"
         category_ids = list(set(category_ids))
         breed_ids = list(set(breed_ids))
-        assert (
-            len(original_filename) >= 0 and len(original_filename) < 100
-        ), "Length of original filename cannot be above 100 or below 0"
-        assert format.lower() in {
-            "json",
-            "src",
-        }, "format must be one of json, src"
-        assert include_favourite in {
-            1,
-            0,
-        }, "include_favourite must be one of 1, 0"
-        assert include_vote in {1, 0}, "include_vote must be one of 1, 0"
 
         url = f"{self.BASE}/images"
         query = _resolve_query(
