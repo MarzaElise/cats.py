@@ -7,3 +7,9 @@ tests/
 *.egg-info
 dist/
 build/
+
+# images stuff
+*.jpg
+*.jpeg
+*.png
+*.webp
