@@ -93,14 +93,15 @@ If you are confused on what would be a good contribution, take a look at the ope
    - Currently, there is no documentation for this wrapper. Alternatively, you can take a look at the
      [API documentation](https://docs.thecatapi.com) and the source to figure out some stuff.
 
+8. Who asked?
+
+   - [I](https://discord.com/users/754557382708822137) did
+
 Note: all changes were tested on python 3.10.0 64-bit before being published
 
 ## What's new
 
-Changes made for the latest release
-
-- Added docstrings for all the methods
-- Better argument vaildation
+- Revealed who asked 👀
 
 ## License
 
