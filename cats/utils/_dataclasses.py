@@ -5,7 +5,7 @@ opt_str: TypeAlias = Optional[str]
 opt_int: TypeAlias = Optional[int]
 
 
-@dataclass()
+@dataclass(frozen=True)
 class Breed:
 
     id: opt_str = None
@@ -53,14 +53,14 @@ class Breed:
     bidability: opt_int = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Category:
 
     id: int = None
     name: str = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Vote:
 
     id: str
@@ -72,7 +72,7 @@ class Vote:
     user_id: opt_str = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Response:
 
     id: Union[str, int, None] = None
@@ -81,14 +81,14 @@ class Response:
     status: opt_int = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class FavouriteImage:
 
     id: str
     url: str
 
 
-@dataclass
+@dataclass(frozen=True)
 class Favourite:
 
     id: str
@@ -102,7 +102,7 @@ class Favourite:
         self.image = FavouriteImage(**self.image)
 
 
-@dataclass
+@dataclass(frozen=True)
 class Image:
 
     id: str = None
@@ -129,7 +129,7 @@ class Image:
         ]  # api returns list
 
 
-@dataclass
+@dataclass(frozen=True)
 class Analysis:
 
     image_id: str = None
