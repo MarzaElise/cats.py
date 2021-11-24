@@ -1,6 +1,5 @@
 from .mixins import *
 from .utils.constants import API_BASE_URL
-import requests
 from .http import HTTPClient
 
 
