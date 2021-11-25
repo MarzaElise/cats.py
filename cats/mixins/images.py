@@ -10,7 +10,7 @@ from typing import List, Optional
 
 
 class ImagesMixin(BaseMixin):
-    def get_all_images(
+    async def get_all_images(
         self,
         *,
         size: str = None,
@@ -58,11 +58,11 @@ class ImagesMixin(BaseMixin):
             breed_id=breed_id,
         )
         url = f"{self.BASE}/images/search"
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Image(**data) for data in json]
 
-    def get_own_image(  # needs a better name
+    async def get_own_image(  # needs a better name
         self,
         *,
         limit: int = None,
@@ -123,11 +123,11 @@ class ImagesMixin(BaseMixin):
             include_vote=include_vote,
             include_favourite=include_favourite,
         )
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Image(**data) for data in json]
 
-    def upload_image(self, file_name: str):
+    async def upload_image(self, file_name: str):
         """Not implemented yet.
 
         Arguments:
@@ -143,7 +143,7 @@ class ImagesMixin(BaseMixin):
     #         res = self.session.post(url, files={"file": file})
     #     return res.text
 
-    def get_image(self, image_id: str):
+    async def get_image(self, image_id: str):
         """
         Get the image matching the image_id provided
 
@@ -156,11 +156,11 @@ class ImagesMixin(BaseMixin):
             ``cats.Image`` : The image you requested
         """
         url = f"{self.BASE}/images/{image_id}"
-        res = self.session.get(url)
-        json = res.json()
+        res = await self.session.get(url)
+        json = await res.json()
         return Image(**json)
 
-    def delete_image(self, image_id: str):
+    async def delete_image(self, image_id: str):
         """Deletr an image posted by you
 
         Arguments:
@@ -170,11 +170,11 @@ class ImagesMixin(BaseMixin):
             ``cats.Response``: Response returned by the API. May contain unsuccesful values
         """
         url = f"{self.BASE}/images/{image_id}"
-        res = self.session.delete(url)
-        json = res.json()
+        res = await self.session.delete(url)
+        json = await res.json()
         return Response(**json)
 
-    def get_image_analysis(self, image_id: str):
+    async def get_image_analysis(self, image_id: str):
         """
         Get the Analysis performed on the Image during upload.
 
@@ -185,11 +185,11 @@ class ImagesMixin(BaseMixin):
             ``cats.Analysis``: The analysis of the image you requested
         """
         url = f"{self.BASE}/images/{image_id}/analysis"
-        res = self.session.get(url)
-        json = res.json()
+        res = await self.session.get(url)
+        json = await res.json()
         return [Analysis(**data) for data in json]
 
-    def search_image(
+    async def search_image(
         self, *, breed_ids: str = None, category_ids: list[int] = None
     ):
         """Search for an image
@@ -203,6 +203,6 @@ class ImagesMixin(BaseMixin):
         """
         url = f"{self.BASE}/images/search"
         query = _resolve_query(breed_ids=breed_ids, category_ids=category_ids)
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Image(**data) for data in json]
