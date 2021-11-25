@@ -4,6 +4,11 @@ import pathlib
 here = pathlib.Path(__file__).parent.resolve()
 desc = (here / "README.md").read_text(encoding="utf-8")
 
+packages = [
+    "cats",
+    "cats.mixins",
+    "cats.utils",
+]
 
 setup(
     name="cats.py",
@@ -24,7 +29,5 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     install_requires=["aiohttp", "pydantic"],
-    packages=find_packages(
-        include=["cats", "cats.*"], exclude=["__pycache__"]
-    ),
+    packages=find_packages(include=packages)
 )
