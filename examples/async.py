@@ -11,6 +11,7 @@ client = Client("YOUR_API_KEY_HERE")
 
 # now you should await all the methods in the client
 
+
 async def coroutine():
     all_breeds = await client.get_breeds()
     # returns all the breeds available as a list of async_cats.Breed objects

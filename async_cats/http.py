@@ -7,7 +7,9 @@ class HTTPClient(ClientSession):
         super().__init__()
         self.headers["x-api-key"] = api_key
 
-    async def post(self, url, data=None, json=None, **kwargs) -> ClientResponse:
+    async def post(
+        self, url, data=None, json=None, **kwargs
+    ) -> ClientResponse:
         res = await super().post(url, data=data, json=json, **kwargs)
         s = _raise_for_status(res.status_code)
         if s:

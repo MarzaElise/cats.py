@@ -32,5 +32,5 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     install_requires=["aiohttp", "requests", "pydantic"],
-    packages=find_packages(include=packages)
+    packages=find_packages(include=packages),
 )

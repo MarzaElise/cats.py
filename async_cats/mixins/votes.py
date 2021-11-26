@@ -22,7 +22,9 @@ class VotesMixin(BaseMixin):
         json = await res.json()
         return [Vote(**data) for data in json]
 
-    async def vote_image(self, *, image_id: str, value: int, sub_id: str = None):
+    async def vote_image(
+        self, *, image_id: str, value: int, sub_id: str = None
+    ):
         """Upvote or Downvote an image
 
         Arguments:
