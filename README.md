@@ -82,10 +82,9 @@ If you are confused on what would be a good contribution, take a look at the ope
    - If you are not on discord, open a new [issue](https://github.com/MarzaElise/cats.py/issues)
    - If you also have a fix for it, create a new pull request and I'll merge it if its good. (See [Contributing](#contributing))
 
-5. Will there be an async version of this?
+5. How to use this in an asynchronous environment?
 
-   - I currently have no plans to do it in the near future. If you really want an asynchronous wrapper,
-   take a look at [catapi.py](https://github.com/ephreal/catapi.py)
+   - You can import and use the `async_cats.Client` class for async support. A simple example can be found in [examples/async.py](./examples/async.py)
 
 6. Is this wrapper consistent?
 
@@ -95,7 +94,7 @@ If you are confused on what would be a good contribution, take a look at the ope
 7. Where is the documentation?
 
    - Currently, there is no documentation for this wrapper. Alternatively, you can take a look at the
-     [API documentation](https://docs.thecatapi.com) and the source to figure out some stuff.
+     [API documentation](https://docs.thecatapi.com), the docstrings and the source to figure out what you need
 
 8. Who asked?
 
