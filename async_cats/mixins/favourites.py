@@ -3,7 +3,7 @@ from ..utils import Favourite, Response, _resolve_query
 
 
 class FavouritesMixin(BaseMixin):
-    def get_all_favourites(
+    async def get_all_favourites(
         self, *, sub_id: str = None, limit: str = None, page: str = None
     ):
         """Get all of the favourites that belong to your account
@@ -18,11 +18,11 @@ class FavouritesMixin(BaseMixin):
         """
         url = f"{self.BASE}/favourites"
         query = _resolve_query(sub_id=sub_id, limit=limit, page=page)
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Favourite(**data) for data in json]
 
-    def save_favourite(self, image_id: str, sub_id: str = None):
+    async def save_favourite(self, image_id: str, sub_id: str = None):
         """Save an image as favourite
 
         Arguments:
@@ -34,11 +34,11 @@ class FavouritesMixin(BaseMixin):
         """
         body = _resolve_query(image_id=image_id, sub_id=sub_id)
         url = f"{self.BASE}/favourites"
-        res = self.session.post(url, json=body)
-        json = res.json()
+        res = await self.session.post(url, json=body)
+        json = await res.json()
         return Response(**json)
 
-    def get_favourite(self, favourite_id: str):
+    async def get_favourite(self, favourite_id: str):
         """Get a specific favourite belonging to your account
 
         Arguments:
@@ -48,11 +48,11 @@ class FavouritesMixin(BaseMixin):
             ``cats.Favourite``: Information about the favourite returned by the API itself
         """
         url = f"{self.BASE}/favourites/{favourite_id}"
-        res = self.session.get(url)
-        json = res.json()
+        res = await self.session.get(url)
+        json = await res.json()
         return Favourite(**json)
 
-    def delete_favourite(self, favourite_id: str):
+    async def delete_favourite(self, favourite_id: str):
         """Delete an image from your favourites
 
         Arguments:
@@ -62,6 +62,6 @@ class FavouritesMixin(BaseMixin):
             ``cats.Response``: Response returned by the API, may contain unsuccesful response too
         """
         url = f"{self.BASE}/favourites/{favourite_id}"
-        res = self.session.delete(url)
-        json = res.json()
+        res = await self.session.delete(url)
+        json = await res.json()
         return Response(**json)

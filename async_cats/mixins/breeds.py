@@ -4,7 +4,7 @@ from urllib.parse import quote
 
 
 class BreedsMixin(BaseMixin):
-    def get_breeds(
+    async def get_breeds(
         self, *, attach_breed: int = 0, page: int = None, limit: int = None
     ):
         """
@@ -19,11 +19,11 @@ class BreedsMixin(BaseMixin):
             ``List[cats.Breed]`` : All the breeds available
         """
         p = _resolve_query(attach_breed=attach_breed, page=page, limit=limit)
-        s = self.session.get(f"{self.BASE}/breeds", params=p)
-        json = s.json()
+        s = await self.session.get(f"{self.BASE}/breeds", params=p)
+        json = await s.json()
         return [Breed(**data) for data in json]
 
-    def search_breed(self, breed: str):
+    async def search_breed(self, breed: str):
         """Search for a specific breed
 
         Arguments:
@@ -33,6 +33,6 @@ class BreedsMixin(BaseMixin):
             ``cats.Breed``: The breed object related to the breed you searched for
         """
         url = f"{self.BASE}/breeds/search?q={quote(breed)}"
-        res = self.session.get(url)
-        json = res.json()
+        res = await self.session.get(url)
+        json = await res.json()
         return Breed(**json[0])

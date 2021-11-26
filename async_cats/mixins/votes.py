@@ -3,7 +3,7 @@ from ..utils import Vote, Response, _resolve_query
 
 
 class VotesMixin(BaseMixin):
-    def get_all_votes(
+    async def get_all_votes(
         self, sub_id: str = None, *, limit: int = None, page: int = None
     ):
         """Get all the votes that belong to your account
@@ -18,11 +18,11 @@ class VotesMixin(BaseMixin):
         """
         query = _resolve_query(sub_id=sub_id, limit=limit, page=page)
         url = self.BASE + "/votes"
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Vote(**data) for data in json]
 
-    def vote_image(self, *, image_id: str, value: int, sub_id: str = None):
+    async def vote_image(self, *, image_id: str, value: int, sub_id: str = None):
         """Upvote or Downvote an image
 
         Arguments:
@@ -39,11 +39,11 @@ class VotesMixin(BaseMixin):
         }, "Value must be either 0 or 1"
         body = _resolve_query(image_id=image_id, sub_id=sub_id, value=value)
         url = f"{self.BASE}/votes"
-        res = self.session.post(url, json=body)
-        json = res.json()
+        res = await self.session.post(url, json=body)
+        json = await res.json()
         return Response(**json)
 
-    def get_vote(self, vote_id: str):
+    async def get_vote(self, vote_id: str):
         """Get a specific vote that belongs to you
 
         Arguments:
@@ -54,13 +54,13 @@ class VotesMixin(BaseMixin):
             ``cats.Response``: Request was not succesful.
         """
         url = f"{self.BASE}/votes/{vote_id}"
-        res = self.session.get(url)
-        json = res.json()
+        res = await self.session.get(url)
+        json = await res.json()
         if res.status_code == 200:
             return Vote(**json)
         return Response(**json)
 
-    def delete_vote(self, vote_id: str):
+    async def delete_vote(self, vote_id: str):
         """Delete a vote that belongs to you
 
         Args:
@@ -70,6 +70,6 @@ class VotesMixin(BaseMixin):
             ``cats.Response``: Response returned by the API. may contain unsuccesful value
         """
         url = f"{self.BASE}/votes/{vote_id}"
-        res = self.session.delete(url)
-        json = res.json()
+        res = await self.session.delete(url)
+        json = await res.json()
         return Response(**json)

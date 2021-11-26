@@ -3,7 +3,7 @@ from .base import BaseMixin
 
 
 class CategoriesMixin(BaseMixin):
-    def get_categories(self, *, limit: int = None, page: int = None):
+    async def get_categories(self, *, limit: int = None, page: int = None):
         """Get all the categories available
 
         Arguments:
@@ -15,6 +15,6 @@ class CategoriesMixin(BaseMixin):
         """
         query = _resolve_query(limit=limit, page=page)
         url = f"{self.BASE}/categories"
-        res = self.session.get(url, params=query)
-        json = res.json()
+        res = await self.session.get(url, params=query)
+        json = await res.json()
         return [Category(**data) for data in json]
