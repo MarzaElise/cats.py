@@ -8,6 +8,9 @@ packages = [
     "cats",
     "cats.mixins",
     "cats.utils",
+    "async_cats",
+    "async_cats.mixins",
+    "async_cats.utils",
 ]
 
 setup(
@@ -28,6 +31,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    install_requires=["aiohttp", "pydantic"],
+    install_requires=["aiohttp", "requests", "pydantic"],
     packages=find_packages(include=packages)
 )
