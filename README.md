@@ -46,6 +46,10 @@ The above code should print something similar to this
 
 [![screenshot](https://media.discordapp.net/attachments/887217168276656191/896471930557853736/unknown.png?width=1024&height=131)](https://media.discordapp.net/attachments/887217168276656191/896471930557853736/unknown.png?width=1024&height=131)
 
+For async support, import `Client` from `async_cats` instead of `cats`.
+
+More usage examples can be found [here](./examples)
+
 ## Contributing
 
 This module/repository is new and might break at any moment. Which is why all pull requests that bring
