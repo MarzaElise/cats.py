@@ -101,7 +101,8 @@ Note: all changes were tested on python 3.10.0 64-bit before being published
 
 ## What's new
 
-- Revealed who asked 👀
+- Support for asynchronous environment
+- New `async_cats` package
 
 ## License
 
