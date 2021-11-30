@@ -106,6 +106,7 @@ Note: all changes were tested on python 3.10.0 64-bit before being published
 
 - Support for asynchronous environment
 - New `async_cats` package
+- More examples in the examples folder
 
 ## License
 
