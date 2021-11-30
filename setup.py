@@ -15,7 +15,7 @@ packages = [
 
 setup(
     name="cats.py",
-    version="0.1.6",
+    version="1.0.0",
     description="A synchronous, object oriented API wrapper for thecatapi",
     long_description=desc,
     long_description_content_type="text/markdown",
