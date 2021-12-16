@@ -114,7 +114,9 @@ class Image(BaseModel):
             self.categories = []
         if self.breeds is None:
             self.breeds = []
-        self.breeds = [Breed(**data) for data in self.breeds]  # api returns a list
+        self.breeds = [
+            Breed(**data) for data in self.breeds
+        ]  # api returns a list
         self.categories = [
             Category(**data) for data in self.categories
         ]  # api returns list
