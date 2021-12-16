@@ -109,18 +109,6 @@ class Image(BaseModel):
     breeds: Breed
     categories: Category
 
-    def __post_init__(self):
-        if self.categories is None:
-            self.categories = []
-        if self.breeds is None:
-            self.breeds = []
-        self.breeds = [
-            Breed(**data) for data in self.breeds
-        ]  # api returns a list
-        self.categories = [
-            Category(**data) for data in self.categories
-        ]  # api returns list
-
 
 class Analysis(BaseModel):
 
