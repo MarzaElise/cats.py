@@ -7,55 +7,55 @@ opt_int: TypeAlias = Optional[int]
 
 class Breed(BaseModel):
 
-    id: opt_str = None
-    name: opt_str = None
-    temperament: opt_str = None
-    life_span: opt_str = None
-    alt_names: opt_str = None
-    wikipedia_url: opt_str = None
-    origin: opt_str = None
-    weight_imperial: opt_str = None
-    country_codes: opt_str = None
-    country_code: opt_str = None
-    description: opt_str = None
-    weight: opt_str = None
-    cfa_url: opt_str = None
-    vetstreet_url: opt_str = None
-    vcahospitals_url: opt_str = None
-    reference_image_id: opt_str = None
-    lap: opt_str = None
-    image: opt_str = None
+    id: opt_str
+    name: opt_str
+    temperament: opt_str
+    life_span: opt_str
+    alt_names: opt_str
+    wikipedia_url: opt_str
+    origin: opt_str
+    weight_imperial: opt_str
+    country_codes: opt_str
+    country_code: opt_str
+    description: opt_str
+    weight: opt_str
+    cfa_url: opt_str
+    vetstreet_url: opt_str
+    vcahospitals_url: opt_str
+    reference_image_id: opt_str
+    lap: opt_str
+    image: opt_str
 
-    experimental: opt_int = None
-    suppressed_tail: opt_int = None
-    indoor: opt_int = None
-    hairless: opt_int = None
-    natural: opt_int = None
-    rare: opt_int = None
-    rex: opt_int = None
-    supress_tail: opt_int = None
-    short_legs: opt_int = None
-    hypoallergenic: opt_int = None
-    adaptability: opt_int = None
-    affection_level: opt_int = None
-    child_friendly: opt_int = None
-    dog_friendly: opt_int = None
-    stranger_friendly: opt_int = None
-    cat_friendly: opt_int = None
-    energy_level: opt_int = None
-    grooming: opt_int = None
-    health_issues: opt_int = None
-    intelligence: opt_int = None
-    shedding_level: opt_int = None
-    social_needs: opt_int = None
-    vocalisation: opt_int = None
-    bidability: opt_int = None
+    experimental: opt_int
+    suppressed_tail: opt_int
+    indoor: opt_int
+    hairless: opt_int
+    natural: opt_int
+    rare: opt_int
+    rex: opt_int
+    supress_tail: opt_int
+    short_legs: opt_int
+    hypoallergenic: opt_int
+    adaptability: opt_int
+    affection_level: opt_int
+    child_friendly: opt_int
+    dog_friendly: opt_int
+    stranger_friendly: opt_int
+    cat_friendly: opt_int
+    energy_level: opt_int
+    grooming: opt_int
+    health_issues: opt_int
+    intelligence: opt_int
+    shedding_level: opt_int
+    social_needs: opt_int
+    vocalisation: opt_int
+    bidability: opt_int
 
 
 class Category(BaseModel):
 
-    id: int = None
-    name: str = None
+    id: int
+    name: str
 
 
 class Vote(BaseModel):
@@ -65,16 +65,16 @@ class Vote(BaseModel):
     sub_id: opt_str
     created_at: str
     value: int
-    country_code: opt_str = None
-    user_id: opt_str = None
+    country_code: opt_str
+    user_id: opt_str
 
 
 class Response(BaseModel):
 
-    id: Union[str, int, None] = None
-    message: str = None
-    level: opt_str = None
-    status: opt_int = None
+    id: Union[str, int, None]
+    message: str
+    level: opt_str
+    status: opt_int
 
 
 class FavouriteImage(BaseModel):
@@ -98,16 +98,16 @@ class Favourite(BaseModel):
 
 class Image(BaseModel):
 
-    id: str = None
-    url: str = None
-    width: int = None
-    height: int = None
-    created_at: str = None
-    sub_id: str = None
-    original_filename: str = None
+    id: str
+    url: str
+    width: int
+    height: int
+    created_at: str
+    sub_id: str
+    original_filename: str
 
-    breeds: Breed = None
-    categories: Category = None
+    breeds: Breed
+    categories: Category
 
     def __post_init__(self):
         if self.categories is None:
@@ -124,9 +124,9 @@ class Image(BaseModel):
 
 class Analysis(BaseModel):
 
-    image_id: str = None
-    labels: list[dict] = None
-    moderation_labels: list[dict] = None
-    vendor: str = None
-    approved: int = None
-    rejected: int = None
+    image_id: str
+    labels: list[dict]
+    moderation_labels: list[dict]
+    vendor: str
+    approved: int
+    rejected: int
