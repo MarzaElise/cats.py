@@ -1,12 +1,11 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from typing import Optional, TypeAlias, Union
 
 opt_str: TypeAlias = Optional[str]
 opt_int: TypeAlias = Optional[int]
 
 
-@dataclass(frozen=True)
-class Breed:
+class Breed(BaseModel):
 
     id: opt_str = None
     name: opt_str = None
@@ -53,15 +52,13 @@ class Breed:
     bidability: opt_int = None
 
 
-@dataclass(frozen=True)
-class Category:
+class Category(BaseModel):
 
     id: int = None
     name: str = None
 
 
-@dataclass(frozen=True)
-class Vote:
+class Vote(BaseModel):
 
     id: str
     image_id: str
@@ -72,8 +69,7 @@ class Vote:
     user_id: opt_str = None
 
 
-@dataclass(frozen=True)
-class Response:
+class Response(BaseModel):
 
     id: Union[str, int, None] = None
     message: str = None
@@ -81,15 +77,13 @@ class Response:
     status: opt_int = None
 
 
-@dataclass(frozen=True)
-class FavouriteImage:
+class FavouriteImage(BaseModel):
 
     id: str
     url: str
 
 
-@dataclass(frozen=True)
-class Favourite:
+class Favourite(BaseModel):
 
     id: str
     image_id: str
@@ -102,8 +96,7 @@ class Favourite:
         self.image = FavouriteImage(**self.image)
 
 
-@dataclass(frozen=True)
-class Image:
+class Image(BaseModel):
 
     id: str = None
     url: str = None
@@ -121,16 +114,13 @@ class Image:
             self.categories = []
         if self.breeds is None:
             self.breeds = []
-        self.breeds = [
-            Breed(**data) for data in self.breeds
-        ]  # api returns a list
+        self.breeds = [Breed(**data) for data in self.breeds]  # api returns a list
         self.categories = [
             Category(**data) for data in self.categories
         ]  # api returns list
 
 
-@dataclass(frozen=True)
-class Analysis:
+class Analysis(BaseModel):
 
     image_id: str = None
     labels: list[dict] = None
